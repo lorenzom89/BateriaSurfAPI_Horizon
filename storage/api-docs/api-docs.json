@@ -1,0 +1,225 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Horizon - Bateria de Surf API",
+        "description": "API desenvolvida para desafio técnico da Horizon, com o objetivo de fornecer resultados de competições de surf, onde foi solicitado a criação das seguintes funcionalidades: \n * Inserir surfistas \n * Obter todos os surfistas cadastrados \n * Criar novas baterias \n * Obter o vencedor de uma bateria\n * Cadastrar novas ondas em uma bateria \n * Cadastrar novas notas em uma onda",
+        "contact": {
+            "name": "Lorenzo Moreti",
+            "email": "lorenzomoreti@yahoo.com"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api"
+        }
+    ],
+    "paths": {
+        "/baterias": {
+            "post": {
+                "tags": [
+                    "Baterias"
+                ],
+                "summary": "Criar uma nova Bateria",
+                "operationId": "398c99afd31f2933a0569544183dd0f2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fk_surfer_a": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "fk_surfer_b": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/baterias/{bateriaId}/vencedor": {
+            "get": {
+                "tags": [
+                    "Baterias"
+                ],
+                "summary": "Obter vencedor da bateria",
+                "operationId": "a6091aabecb0df858272645aefb0bf7f",
+                "parameters": [
+                    {
+                        "name": "bateriaId",
+                        "in": "path",
+                        "description": "ID da Bateria",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/notas": {
+            "post": {
+                "tags": [
+                    "Notas"
+                ],
+                "summary": "Adicionar Notas para uma Onda",
+                "operationId": "34cef6a4f9ee1a3a4962bc6070ea9e65",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fk_wave": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "partialScore1": {
+                                        "type": "number"
+                                    },
+                                    "partialScore2": {
+                                        "type": "number"
+                                    },
+                                    "partialScore3": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/surfistas": {
+            "get": {
+                "tags": [
+                    "Surfistas"
+                ],
+                "summary": "Listar todos os surfistas",
+                "operationId": "4e9545e57b08218b0216282e4a7e2101",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Surfistas"
+                ],
+                "summary": "Inserir um novo surfista",
+                "operationId": "dfb313df4df8abb9691d76420ef595cc",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/ondas": {
+            "post": {
+                "tags": [
+                    "Ondas"
+                ],
+                "summary": "Cadastrar nova Onda",
+                "operationId": "038ecafe2f8523c8a105876e3fe8118f",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fk_heat": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "fk_surfer": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Baterias",
+            "description": "API Endpoint - Baterias"
+        },
+        {
+            "name": "Notas",
+            "description": "API Endpoint - Notas"
+        },
+        {
+            "name": "Surfistas",
+            "description": "API Endpoint - Surfistas"
+        },
+        {
+            "name": "Ondas",
+            "description": "API Endpoint - Ondas"
+        }
+    ]
+}
