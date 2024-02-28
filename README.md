@@ -27,9 +27,17 @@ E seguindo as seguintes regras de negócios:
 ![](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)  
 
 
-## Variáveis de Ambiente
+## Instalação e Deploy Local
 
-Após clonar o projeto, você vai precisar criar o arquivo .env seguindo o .env.example, e preencher as seguintes variáveis de acordo com as suas configurações de banco de dados:
+#### Clonar o Projeto
+
+```bash
+git clone https://github.com/lorenzom89/BateriaSurfAPI_Horizon.git
+```
+
+#### Variáveis de Ambiente
+
+Após clonar o projeto, você vai precisar criar o arquivo .env na pasta raiz seguindo o arquivo .env.example, e preencher as seguintes variáveis de acordo com as suas configurações de banco de dados:
 
 `DB_CONNECTION`,
 `DB_HOST`,
@@ -38,7 +46,8 @@ Após clonar o projeto, você vai precisar criar o arquivo .env seguindo o .env.
 `DB_USERNAME`,
 `DB_PASSWORD`
 
-## Instalação e Deploy Local
+
+
 #### Os testes de API normalmente são feitos utilizando ferramentas como [POSTMAN](https://www.postman.com/downloads/) ou [INSOMNIA](https://insomnia.rest/download), entretanto, para a documentação, visualização e testes da API, foi utilizado o Swagger. É possivel acessa-lo, após iniciar o servidor, através do link: [http://localhost:8000/api/doc](http://localhost:8000/api/doc)
 
 Após criar e preencher as variáveis de ambiente conforme descrito no passo anterior, será necessário realizar os seguintes comandos na raiz do projeto:
@@ -47,22 +56,25 @@ Após criar e preencher as variáveis de ambiente conforme descrito no passo ant
 
 #### Instalar as dependencias
 ```bash
-$    composer install
+   composer install
 ```
-
+#### Gerar a chave da aplicação
+```bash
+   php artisan key:generate
+```
 #### Criar as tabelas no banco de dados
 ```bash
-$    php artisan migrate
+   php artisan migrate
 ```
 
 #### Popular as tabelas com alguns exemplos para teste
 ```bash
-$    php artisan db:seed
+   php artisan db:seed
 ```
 
 #### Iniciando o servidor
 ```bash
-$    php artisan serve
+   php artisan serve
 ```
 
 
